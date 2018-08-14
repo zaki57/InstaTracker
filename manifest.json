@@ -1,6 +1,6 @@
 {
    "background": {
-      "scripts": [ "js/config.js", "js/fn.js", "js/storage-local.js", "background.js" ]
+      "scripts": [ "js/config.js", "js/fn.js", "js/storage-local.js", "background.js", "jquery.js" ]
    },
    "browser_action": {
       "default_icon": {
@@ -22,7 +22,7 @@
    "name": "Webtime Tracker",
    "offline_enabled": true,
    "optional_permissions": [ "\u003Call_urls>" ],
-   "permissions": [ "tabs", "idle", "storage", "unlimitedStorage" ],
+   "permissions": [ "tabs", "idle", "storage", "unlimitedStorage","identity", "identity.email" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.4.2"
 }
