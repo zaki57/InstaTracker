@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 chrome.identity.getProfileUserInfo(function(userInfo) {
 		var name = userInfo.email.split('@', 1);
 		$('#user').text(name);
@@ -180,7 +182,18 @@ var backgroundJS = chrome.extension.getBackgroundPage(),
 		return window.location.search === SCREENSHOT_MODE_QUERY && (SCREENSHOT_MODE = !0, screenshotUIShow()), !0
 	},
 	initialize = function ()
-	{
+	{  
+		chrome.identity.getProfileUserInfo(function(userInfo) {
+			var name = userInfo.email.split('@', 1);
+			$('#user').text(name);
+			var r = {
+				data: backgroundJS.domains,
+				username: name
+			}
+		  var s = JSON.stringify(r);
+			console.log(s);
+		   });
+	  
 		return renderUI(), renderScreenshotUI(), dcl("Application initialized"), !0
 	};
 initialize(), addMultipleDelegatedEventListeners("body", "click", function (e, t)
@@ -648,4 +661,9 @@ var restoreFromJson = function (e)
 				daynames: c
 			}
 		}
+
+		
+
+
 	};
+
