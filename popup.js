@@ -8,7 +8,7 @@ $(document).ready(function () {
     chrome.storage.local.get('str', function(result) {
     $('#url').html(result.str);
 })
-,10000);
+,1000);
 
 });
 

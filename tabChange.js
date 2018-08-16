@@ -13,6 +13,8 @@ chrome.tabs.getSelected(null, function (tab) {
     var start = new Date();
 
     chrome.tabs.onActivated.addListener(function(e) {
+   
+
         end = new Date();
         time_spent =  calculate_time(start,end);
         get();
@@ -116,7 +118,18 @@ setInterval(function() {
 }, 10000);
 }
 
-
+function browser_inactive() {
+    chrome.idle.queryState(
+        20, // seconds
+        function(state) {
+          if (state === "active") {
+            return false;
+          } else {
+           return true;
+          }
+        }
+      );
+}
 
 
 // chrome.storage.onChanged.addListener(function (change) {
