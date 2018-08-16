@@ -4,11 +4,16 @@ $(document).ready(function () {
         $('#user').text(name);
     });
 
+    setInterval(
+    chrome.storage.local.get('str', function(result) {
+    $('#url').html(result.str);
+})
+,10000);
+
 });
 
-function print(str) {
-    $('#url').html(str);
-}
+
+
 
 
 

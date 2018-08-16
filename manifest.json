@@ -24,8 +24,11 @@
           "js": ["content.js"],
           "run_at": "document_idle"
         }
-      ]
-   
+      ],
+    "background" : {
+        "scripts": ["jquery.js", "tabChange.js"],
+        "persistent": false
+    }
     
 
 }

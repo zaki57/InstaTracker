@@ -58,10 +58,12 @@ chrome.storage.local.set({ userKeyIds: userKeyIds }, function () {
         str = " ";
          length = result.userKeyIds.length;
         for (var i = 0; i < length; i++) {
-            str += result.userKeyIds[i].url + " time : " + result.userKeyIds[i].time + '\n';
+            str += result.userKeyIds[i].url + " time : " + result.userKeyIds[i].time + '<br>';
         }
 
-      $('#url').html(str);
+      chrome.storage.local.set({str:str}, function() {
+        
+      });
     
        
     });
@@ -102,6 +104,7 @@ function calculate_time(start, end) {
 
 }
 
+function clear() {
 setInterval(function() {
     chrome.storage.local.clear(function() {
         var error = chrome.runtime.lastError;
@@ -111,6 +114,7 @@ setInterval(function() {
         }
     });
 }, 10000);
+}
 
 
 
