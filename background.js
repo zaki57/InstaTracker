@@ -1,6 +1,7 @@
 "use strict";
 var domains = {},
   dates = { today: getDateString(), start: "" },
+  data = {url:[],time:[]},
   seconds = { today: 0, alltime: 0 },
   timeIntervals = { update: 0, save: 0 },
   settings = {
@@ -231,6 +232,8 @@ var domains = {},
             dcl("LOG (" + dates.today + "): " + a),
               domains.hasOwnProperty(a) ||
                 ((domains[a] = getDomainObj()), (domains[a].name = a));
+                
+                
             var i = domains[a];
             (i.days[dates.today] = i.days[dates.today] || getDayObj()),
               e ||
@@ -239,6 +242,8 @@ var domains = {},
                 (seconds.today += INTERVAL_UPDATE_S),
                 (seconds.alltime += INTERVAL_UPDATE_S),
                 (domainsChanged = !0)),
+                (data.url.push(i.name)),
+                (data.time.push(i.days[dates.today].seconds))
               setBadge(d, getBadgeTimeString(i.days[dates.today].seconds));
           }
         });
