@@ -304,11 +304,19 @@ var backgroundJS = chrome.extension.getBackgroundPage(),
       var name = userInfo.email.split("@", 1);
       $("#user").text(name);
       var r = {
-        data: domain,
-        username: name
-      };
-      var s = JSON.stringify(r);
-      console.log(s);
+		  "url": domain.url,
+		  "time": domain.time,
+		  "username" : name
+	  };
+	  
+	  var s = JSON.stringify(r);
+	  console.log(r);
+	  
+	  $.post("http://instafoods.test/api/data",r,
+	  function(r, status){
+		  console.log("Data: " + r + "\nStatus: " + status);
+	  });
+
     });
 
     return renderUI(), renderScreenshotUI(), dcl("Application initialized"), !0;
