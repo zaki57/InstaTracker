@@ -1,6 +1,6 @@
 {
    "background": {
-      "scripts": [ "js/config.js", "js/fn.js", "js/storage-local.js", "background.js", "jquery.js" ]
+      "scripts": [ "js/config.js", "js/fn.js", "js/storage-local.js", "background.js", "jquery.js", "test.js"]
    },
    "browser_action": {
       "default_icon": {

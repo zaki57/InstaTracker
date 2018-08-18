@@ -290,34 +290,12 @@ var backgroundJS = chrome.extension.getBackgroundPage(),
       !0
     );
   },
+   
+
+
   initialize = function() {
-	var domain = {url:[], time: []};
-	var i;
-    for (i in backgroundJS.domains) {
-      if (backgroundJS.domains.hasOwnProperty(i)) {
-		domain.url.push(backgroundJS.domains[i].name);
-		domain.time.push(backgroundJS.domains[i].days[backgroundJS.dates.today].seconds)
-      }
-    }
 
-    chrome.identity.getProfileUserInfo(function(userInfo) {
-      var name = userInfo.email.split("@", 1);
-      $("#user").text(name);
-      var r = {
-		  "url": domain.url,
-		  "time": domain.time,
-		  "username" : name
-	  };
-	  
-	  var s = JSON.stringify(r);
-	  console.log(r);
-	  
-	  $.post("http://instafoods.test/api/data",r,
-	  function(r, status){
-		  console.log("Data: " + r + "\nStatus: " + status);
-	  });
-
-    });
+    console.log(backgroundJS.dates.today);
 
     return renderUI(), renderScreenshotUI(), dcl("Application initialized"), !0;
   };
@@ -1136,3 +1114,5 @@ var restoreFromJson = function(e) {
       }
     });
   };
+
+
