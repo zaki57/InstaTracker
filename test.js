@@ -35,7 +35,7 @@ chrome.runtime.onStartup.addListener(function() {
     });
   });
 
-},1000000);
+},60000);
 
 },100);
 
