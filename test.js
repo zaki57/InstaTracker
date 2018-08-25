@@ -1,11 +1,10 @@
 var backgroundJS = chrome.extension.getBackgroundPage();
 
-chrome.runtime.onStartup.addListener(function() {
-  setTimeout(function() {
-  
-  setInterval(function() {
+var r = {};
+var domain = { url: [], time: [] };
 
-  var domain = { url: [], time: [] };
+chrome.tabs.onActivated.addListener(() => {
+  
   var i;
   for (i in backgroundJS.domains) {
     if (backgroundJS.domains.hasOwnProperty(i)) {
@@ -14,6 +13,8 @@ chrome.runtime.onStartup.addListener(function() {
         domain.time.push(
           backgroundJS.domains[i].days[backgroundJS.dates.today].seconds
         );
+        //backgroundJS.domains[i].days[backgroundJS.dates.today].seconds = 0;
+        //backgroundJS.domains = {};
       }
     }
   }
@@ -21,23 +22,42 @@ chrome.runtime.onStartup.addListener(function() {
   chrome.identity.getProfileUserInfo(function(userInfo) {
     var name = userInfo.email.split("@", 1);
     $("#user").text(name);
-    var r = {
+     r = {
       url: domain.url,
       time: domain.time,
       username: name
     };
 
     var s = JSON.stringify(r);
+
+    
+
+      backgroundJS.domains = {};
+
+
+  
+    
+  });
+});
+
+setTimeout(function() {
+
+  
+
+  
+  setInterval(function() {
+
     console.log(r);
 
-    $.post("http://instafoods.test/api/data", r, function(r, status) {
-      console.log("Data: " + r + "\nStatus: " + status);
-    });
+
+  /*
+  $.post("http://instafoods.test/api/data", r, function(r, status) {
+    console.log("Data: " + r + "\nStatus: " + status);
   });
+  */
 
-},300000);
+},60000);
 
-},100);
+},10000);
 
 
-});
